@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Userlayout from './components/Layout/UserLayout'
-import Home from './pages/Home.JSX'
+import Home from './pages/Home.jsx'
 import { Toaster } from 'sonner'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
