@@ -1,0 +1,21 @@
+@import "tailwindcss";
+/*
+  Tailwind CSS v4+ uses CSS-first configuration.
+  To customize your theme, use the @theme directive here, e.g.:
+*/
+
+@theme {
+  --color-ktr-green: #0A3323;
+  --color-ktr-blue: #105666;
+  --color-ktr-pink: #D3968C;
+  --color-ktr-skin: #F7F4D5;
+  --background-image-booksdos: url('/src/assets/background.svg');
+  --font-cookie: 'Cookie', cursive;
+  --font-lora: 'Lora', serif;
+
+}
+
+#root {
+  font-optical-sizing: auto;
+  font-style: normal;
+}
