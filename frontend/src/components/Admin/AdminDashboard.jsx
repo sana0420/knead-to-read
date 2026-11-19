@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDashboardData } from '../../redux/slices/adminAnalyticsSlice'; // Adjust path as needed
+import { useNavigate } from 'react-router-dom';
+import { fetchDashboardData } from '../../redux/slices/adminAnalyticsSlice';
+import { logout } from '../../redux/slices/authSlice';
 
 const AdminDashboard = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // Local UI states
     const [activeTab, setActiveTab] = useState('Overview');
@@ -11,6 +14,7 @@ const AdminDashboard = () => {
 
     // Extract slice state from Redux store
     const analytics = useSelector((state) => state.adminAnalytics) || {};
+    const { user } = useSelector((state) => state.auth);
     const subscriptions = Array.isArray(analytics.subscriptions) ? analytics.subscriptions : [];
     const todaysOrders = Array.isArray(analytics.todaysOrders) ? analytics.todaysOrders : [];
     const products = Array.isArray(analytics.products) ? analytics.products : [];
@@ -20,6 +24,11 @@ const AdminDashboard = () => {
     useEffect(() => {
         dispatch(fetchDashboardData());
     }, [dispatch]);
+
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/login');
+    };
 
     // Derive KPI metrics dynamically from Redux store data
     const activeSubsCount = subscriptions.filter((s) => s.status === 'active').length;
@@ -86,31 +95,61 @@ const AdminDashboard = () => {
             <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
 
                 {/* GLOBAL TOP HEADER & CONTROLS */}
-                <header className="bg-ktr-skin border-b border-slate-200 px-8 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <header className="bg-ktr-skin border-b border-slate-200 px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
                         <h1 className="text-xl font-bold text-slate-900">{activeTab} Dashboard</h1>
                         <p className="text-xs text-slate-500 mt-0.5">Real-time breakdown of performance metrics and operational queues.</p>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
                         <select
                             value={dateRange}
                             onChange={(e) => setDateRange(e.target.value)}
-                            className="bg-slate-100 text-slate-700 text-xs font-medium px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="bg-slate-100 text-slate-700 text-xs font-medium px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto"
                         >
                             <option>Today</option>
                             <option>This Week</option>
                             <option>This Month</option>
                             <option>Quarter to Date</option>
                         </select>
-
-                        <button className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm">
-                            + Add Product
-                        </button>
                     </div>
                 </header>
 
-                <main className="p-8 space-y-8">
+                <main className="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8">
+
+                    {/* ADMIN USER INFO CARD - Shown first when admin logs in */}
+                    <section className="bg-[#FFFDEB]/95 rounded-2xl border border-ktr-pink/35 shadow-md p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+                        <div className="flex items-center gap-4 sm:gap-5">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-ktr-green text-ktr-skin ring-4 ring-ktr-pink/40 flex items-center justify-center text-xl sm:text-2xl font-cookie shadow-md flex-shrink-0">
+                                {user?.name ? user.name.charAt(0).toUpperCase() : 'A'}
+                            </div>
+                            <div>
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <h2 className="text-lg sm:text-xl font-bold text-ktr-blue font-lora">{user?.name || 'Admin User'}</h2>
+                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-ktr-pink/25 text-ktr-blue border border-ktr-pink/40">
+                                        🛡️ Store Admin
+                                    </span>
+                                </div>
+                                <p className="text-xs text-ktr-blue/70 mt-1 flex items-center gap-1">
+                                    <span>✉️</span> {user?.email || 'admin@example.com'}
+                                </p>
+                                <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-ktr-blue/80 mt-2">
+                                    <span>📅 Member Since: {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'Member'}</span>
+                                    <span className="hidden sm:inline">•</span>
+                                    <span>🔖 Subscription: None</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="w-full sm:w-auto flex justify-end">
+                            <button
+                                onClick={handleLogout}
+                                className="w-full sm:w-auto px-4 py-2 border border-ktr-pink/60 text-ktr-blue hover:bg-ktr-pink/20 hover:text-red-700 rounded-xl text-xs font-semibold transition cursor-pointer flex items-center justify-center gap-1.5 shadow-2xs"
+                            >
+                                <span>Sign Out</span>
+                            </button>
+                        </div>
+                    </section>
 
                     {/* KPI METRIC CARDS STRIP */}
                     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
