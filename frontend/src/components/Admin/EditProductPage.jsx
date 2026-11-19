@@ -36,7 +36,7 @@ import {
     FaSpinner,
 } from 'react-icons/fa';
 
-const API_URL = import.meta.env.BACKEND_URL;
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 const SUGGESTED_TAGS = [
     'gothic',
@@ -574,8 +574,8 @@ const EditProductPage = () => {
                         <div className="flex items-center gap-2">
                             <span
                                 className={`text-[11px] uppercase font-extrabold px-2.5 py-0.5 rounded-full border ${isEditMode
-                                        ? 'bg-ktr-pink/40 border-ktr-pink text-ktr-blue'
-                                        : 'bg-ktr-green/20 border-ktr-green/40 text-ktr-green'
+                                    ? 'bg-ktr-pink/40 border-ktr-pink text-ktr-blue'
+                                    : 'bg-ktr-green/20 border-ktr-green/40 text-ktr-green'
                                     }`}
                             >
                                 {isEditMode ? 'Edit Mode' : 'New Product'}
@@ -597,8 +597,8 @@ const EditProductPage = () => {
                             type="button"
                             onClick={() => setViewMode('tabs')}
                             className={`px-3 py-1.5 rounded-lg cursor-pointer transition ${viewMode === 'tabs'
-                                    ? 'bg-ktr-blue text-ktr-skin shadow-sm'
-                                    : 'text-ktr-blue hover:bg-ktr-pink/30'
+                                ? 'bg-ktr-blue text-ktr-skin shadow-sm'
+                                : 'text-ktr-blue hover:bg-ktr-pink/30'
                                 }`}
                         >
                             Tabs View
@@ -607,8 +607,8 @@ const EditProductPage = () => {
                             type="button"
                             onClick={() => setViewMode('accordion')}
                             className={`px-3 py-1.5 rounded-lg cursor-pointer transition ${viewMode === 'accordion'
-                                    ? 'bg-ktr-blue text-ktr-skin shadow-sm'
-                                    : 'text-ktr-blue hover:bg-ktr-pink/30'
+                                ? 'bg-ktr-blue text-ktr-skin shadow-sm'
+                                : 'text-ktr-blue hover:bg-ktr-pink/30'
                                 }`}
                         >
                             Accordion View
@@ -656,10 +656,10 @@ const EditProductPage = () => {
                                     }
                                 }}
                                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition cursor-pointer ${activeTab === section.id
-                                        ? 'bg-ktr-blue text-ktr-skin shadow-md'
-                                        : isInactive
-                                            ? 'opacity-40 text-ktr-blue/50 hover:opacity-60 bg-transparent'
-                                            : 'text-ktr-blue bg-ktr-pink/30 hover:bg-ktr-pink/60 border border-ktr-pink/40'
+                                    ? 'bg-ktr-blue text-ktr-skin shadow-md'
+                                    : isInactive
+                                        ? 'opacity-40 text-ktr-blue/50 hover:opacity-60 bg-transparent'
+                                        : 'text-ktr-blue bg-ktr-pink/30 hover:bg-ktr-pink/60 border border-ktr-pink/40'
                                     }`}
                             >
                                 <Icon className="text-base" />
@@ -667,8 +667,8 @@ const EditProductPage = () => {
                                 {isPairing && (
                                     <span
                                         className={`text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold ${formData.category === 'pairing'
-                                                ? 'bg-ktr-skin text-ktr-blue border border-ktr-blue'
-                                                : 'bg-ktr-pink/50 text-ktr-blue'
+                                            ? 'bg-ktr-skin text-ktr-blue border border-ktr-blue'
+                                            : 'bg-ktr-pink/50 text-ktr-blue'
                                             }`}
                                     >
                                         {formData.category === 'pairing'
@@ -767,15 +767,15 @@ const EditProductPage = () => {
                                                     type="button"
                                                     onClick={() => handleCategoryChange(cat.id)}
                                                     className={`p-4 rounded-xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between ${isSelected
-                                                            ? 'border-ktr-blue bg-ktr-blue text-ktr-skin shadow-md'
-                                                            : 'border-ktr-blue/30 hover:border-ktr-blue bg-ktr-skin/50 text-ktr-blue hover:bg-ktr-pink/20'
+                                                        ? 'border-ktr-blue bg-ktr-blue text-ktr-skin shadow-md'
+                                                        : 'border-ktr-blue/30 hover:border-ktr-blue bg-ktr-skin/50 text-ktr-blue hover:bg-ktr-pink/20'
                                                         }`}
                                                 >
                                                     <div className="flex items-center justify-between mb-2">
                                                         <div
                                                             className={`p-2 rounded-lg ${isSelected
-                                                                    ? 'bg-ktr-skin text-ktr-blue'
-                                                                    : 'bg-ktr-pink/40 text-ktr-blue'
+                                                                ? 'bg-ktr-skin text-ktr-blue'
+                                                                : 'bg-ktr-pink/40 text-ktr-blue'
                                                                 }`}
                                                         >
                                                             <CatIcon />
@@ -882,8 +882,8 @@ const EditProductPage = () => {
                                                             : handleAddTag(sug)
                                                     }
                                                     className={`text-[11px] px-2.5 py-0.5 rounded-full border font-semibold transition cursor-pointer ${isSelected
-                                                            ? 'bg-ktr-blue text-ktr-skin border-ktr-blue'
-                                                            : 'bg-ktr-skin hover:bg-ktr-pink/30 text-ktr-blue border-ktr-blue/30'
+                                                        ? 'bg-ktr-blue text-ktr-skin border-ktr-blue'
+                                                        : 'bg-ktr-skin hover:bg-ktr-pink/30 text-ktr-blue border-ktr-blue/30'
                                                         }`}
                                                 >
                                                     {isSelected ? `✓ ${sug}` : `+ ${sug}`}
@@ -991,10 +991,10 @@ const EditProductPage = () => {
                                             </label>
                                             <span
                                                 className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${Number(formData.countInStock) === 0
-                                                        ? 'bg-red-100 text-red-700 border-red-300'
-                                                        : Number(formData.countInStock) <= 5
-                                                            ? 'bg-ktr-pink/50 text-ktr-blue border-ktr-pink'
-                                                            : 'bg-ktr-green/20 text-ktr-green border-ktr-green/40'
+                                                    ? 'bg-red-100 text-red-700 border-red-300'
+                                                    : Number(formData.countInStock) <= 5
+                                                        ? 'bg-ktr-pink/50 text-ktr-blue border-ktr-pink'
+                                                        : 'bg-ktr-green/20 text-ktr-green border-ktr-green/40'
                                                     }`}
                                             >
                                                 {Number(formData.countInStock) === 0
@@ -1156,8 +1156,8 @@ const EditProductPage = () => {
                                                         onDrop={(e) => handleDrop(e, idx)}
                                                         onDragEnd={handleDragEnd}
                                                         className={`border-2 rounded-2xl p-3 bg-white/90 shadow-sm transition-all relative ${isCover
-                                                                ? 'border-ktr-blue ring-2 ring-ktr-blue/30'
-                                                                : 'border-ktr-blue/20'
+                                                            ? 'border-ktr-blue ring-2 ring-ktr-blue/30'
+                                                            : 'border-ktr-blue/20'
                                                             } ${isBeingDragged ? 'opacity-40 scale-95' : ''} ${isDragOver ? 'border-dashed border-2 border-ktr-blue bg-ktr-pink/20' : ''
                                                             }`}
                                                     >
@@ -1257,8 +1257,8 @@ const EditProductPage = () => {
                 {(viewMode === 'accordion' || activeTab === 'pairing') && (
                     <div
                         className={`bg-ktr-skin/90 rounded-2xl border-2 shadow-md overflow-hidden ${formData.category === 'pairing'
-                                ? 'border-ktr-pink ring-2 ring-ktr-pink/30'
-                                : 'border-ktr-blue/20 opacity-60'
+                            ? 'border-ktr-pink ring-2 ring-ktr-pink/30'
+                            : 'border-ktr-blue/20 opacity-60'
                             }`}
                     >
                         <div
@@ -1406,8 +1406,8 @@ const EditProductPage = () => {
                                                                 <label
                                                                     key={book._id}
                                                                     className={`flex items-center gap-3 p-2.5 rounded-xl border-2 transition cursor-pointer ${isChecked
-                                                                            ? 'bg-ktr-blue/15 border-ktr-blue shadow-xs'
-                                                                            : 'bg-white/80 border-ktr-blue/20 hover:bg-white'
+                                                                        ? 'bg-ktr-blue/15 border-ktr-blue shadow-xs'
+                                                                        : 'bg-white/80 border-ktr-blue/20 hover:bg-white'
                                                                         }`}
                                                                 >
                                                                     <input
@@ -1462,8 +1462,8 @@ const EditProductPage = () => {
                                                                 <label
                                                                     key={pastry._id}
                                                                     className={`flex items-center gap-3 p-2.5 rounded-xl border-2 transition cursor-pointer ${isChecked
-                                                                            ? 'bg-ktr-pink/30 border-ktr-pink shadow-xs'
-                                                                            : 'bg-white/80 border-ktr-blue/20 hover:bg-white'
+                                                                        ? 'bg-ktr-pink/30 border-ktr-pink shadow-xs'
+                                                                        : 'bg-white/80 border-ktr-blue/20 hover:bg-white'
                                                                         }`}
                                                                 >
                                                                     <input
@@ -1548,10 +1548,10 @@ const EditProductPage = () => {
                                             </button>
                                             <span
                                                 className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${metaTitleLen >= 50 && metaTitleLen <= 60
-                                                        ? 'bg-ktr-green/20 text-ktr-green border-ktr-green/40'
-                                                        : metaTitleLen > 60
-                                                            ? 'bg-red-100 text-red-700 border-red-300'
-                                                            : 'bg-ktr-pink/30 text-ktr-blue border-ktr-pink'
+                                                    ? 'bg-ktr-green/20 text-ktr-green border-ktr-green/40'
+                                                    : metaTitleLen > 60
+                                                        ? 'bg-red-100 text-red-700 border-red-300'
+                                                        : 'bg-ktr-pink/30 text-ktr-blue border-ktr-pink'
                                                     }`}
                                             >
                                                 {metaTitleLen} / 50–60 chars
@@ -1572,10 +1572,10 @@ const EditProductPage = () => {
                                     <div className="w-full bg-ktr-blue/10 h-2 rounded-full mt-2 overflow-hidden border border-ktr-blue/20">
                                         <div
                                             className={`h-full transition-all ${metaTitleLen >= 50 && metaTitleLen <= 60
-                                                    ? 'bg-ktr-green'
-                                                    : metaTitleLen > 60
-                                                        ? 'bg-red-500'
-                                                        : 'bg-ktr-pink'
+                                                ? 'bg-ktr-green'
+                                                : metaTitleLen > 60
+                                                    ? 'bg-red-500'
+                                                    : 'bg-ktr-pink'
                                                 }`}
                                             style={{ width: `${Math.min(100, (metaTitleLen / 60) * 100)}%` }}
                                         />
@@ -1598,10 +1598,10 @@ const EditProductPage = () => {
                                             </button>
                                             <span
                                                 className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${metaDescLen >= 150 && metaDescLen <= 160
-                                                        ? 'bg-ktr-green/20 text-ktr-green border-ktr-green/40'
-                                                        : metaDescLen > 160
-                                                            ? 'bg-red-100 text-red-700 border-red-300'
-                                                            : 'bg-ktr-pink/30 text-ktr-blue border-ktr-pink'
+                                                    ? 'bg-ktr-green/20 text-ktr-green border-ktr-green/40'
+                                                    : metaDescLen > 160
+                                                        ? 'bg-red-100 text-red-700 border-red-300'
+                                                        : 'bg-ktr-pink/30 text-ktr-blue border-ktr-pink'
                                                     }`}
                                             >
                                                 {metaDescLen} / 150–160 chars
@@ -1622,10 +1622,10 @@ const EditProductPage = () => {
                                     <div className="w-full bg-ktr-blue/10 h-2 rounded-full mt-2 overflow-hidden border border-ktr-blue/20">
                                         <div
                                             className={`h-full transition-all ${metaDescLen >= 150 && metaDescLen <= 160
-                                                    ? 'bg-ktr-green'
-                                                    : metaDescLen > 160
-                                                        ? 'bg-red-500'
-                                                        : 'bg-ktr-pink'
+                                                ? 'bg-ktr-green'
+                                                : metaDescLen > 160
+                                                    ? 'bg-red-500'
+                                                    : 'bg-ktr-pink'
                                                 }`}
                                             style={{ width: `${Math.min(100, (metaDescLen / 160) * 100)}%` }}
                                         />

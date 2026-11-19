@@ -22,7 +22,7 @@ export default function SubscriptionPlans() {
     const [selectedFrequency, setSelectedFrequency] = useState('monthly');
 
     useEffect(() => {
-        fetch(`${import.meta.env.BACKEND_URL}/api/subscriptions/plans`)
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/subscriptions/plans`)
             .then(res => {
                 if (!res.ok) throw new Error(`Server returned ${res.status}`);
                 return res.json();

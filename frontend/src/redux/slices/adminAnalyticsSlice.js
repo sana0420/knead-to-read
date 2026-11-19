@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL = import.meta.env.BACKEND_URL;
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 const getAuthHeaders = () => ({
     Authorization: `Bearer ${localStorage.getItem('userToken') || localStorage.getItem('usertoken')}`,

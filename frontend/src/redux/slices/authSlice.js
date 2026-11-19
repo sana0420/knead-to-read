@@ -22,7 +22,7 @@ const initialState = {
 // Asynchronous thunk to login user
 export const loginUser = createAsyncThunk("auth/loginUser", async (userData, { rejectWithValue }) => {
     try {
-        const response = await axios.post(`${import.meta.env.BACKEND_URL}/api/users/login`, userData);
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, userData);
         localStorage.setItem("userInfo", JSON.stringify(response.data.user));
         localStorage.setItem("userToken", response.data.token);
 
@@ -35,7 +35,7 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (userData, { r
 // Registration thunk
 export const registerUser = createAsyncThunk("auth/registerUser", async (userData, { rejectWithValue }) => {
     try {
-        const response = await axios.post(`${import.meta.env.BACKEND_URL}/api/users/register`, userData);
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/register`, userData);
         localStorage.setItem("userInfo", JSON.stringify(response.data.user));
         localStorage.setItem("userToken", response.data.token);
 
@@ -49,7 +49,7 @@ export const registerUser = createAsyncThunk("auth/registerUser", async (userDat
 export const updateProfile = createAsyncThunk("auth/updateProfile", async (userData, { rejectWithValue }) => {
     try {
         const token = localStorage.getItem("userToken");
-        const response = await axios.put(`${import.meta.env.BACKEND_URL}/api/users/profile`, userData, {
+        const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/users/profile`, userData, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -66,7 +66,7 @@ export const getUserProfile = createAsyncThunk("auth/getUserProfile", async (_, 
     try {
         const token = localStorage.getItem("userToken");
         if (!token) throw new Error("No token found");
-        const response = await axios.get(`${import.meta.env.BACKEND_URL}/api/users/profile`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/profile`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
