@@ -76,7 +76,7 @@ const Checkout = () => {
 
         try {
             const response = await fetch(
-                `${import.meta.env.VITE_BACKEND_URL}/api/checkout/create-payment-intent`,
+                `${import.meta.env.BACKEND_URL}/api/checkout/create-payment-intent`,
                 {
                     method: 'POST',
                     headers: {

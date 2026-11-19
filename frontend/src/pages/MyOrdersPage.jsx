@@ -15,7 +15,7 @@ const MyOrdersPage = ({ isEmbedded = false }) => {
                 const userToken = localStorage.getItem("userToken");
 
                 const response = await axios.get(
-                    `${import.meta.env.VITE_BACKEND_URL}/api/orders/my-orders`,
+                    `${import.meta.env.BACKEND_URL}/api/orders/my-orders`,
                     {
                         headers: {
                             Authorization: `Bearer ${userToken}`,
@@ -93,11 +93,10 @@ const MyOrdersPage = ({ isEmbedded = false }) => {
                                                 #{order._id.substring(order._id.length - 6).toUpperCase()}
                                             </p>
                                             <span
-                                                className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold border ${
-                                                    order.isPaid
+                                                className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold border ${order.isPaid
                                                         ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
                                                         : 'bg-amber-100 text-amber-800 border-amber-300'
-                                                }`}
+                                                    }`}
                                             >
                                                 {order.isPaid ? 'Paid' : 'Pending'}
                                             </span>
@@ -175,11 +174,10 @@ const MyOrdersPage = ({ isEmbedded = false }) => {
                                         </td>
                                         <td className='py-3.5 px-4 text-right'>
                                             <span
-                                                className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${
-                                                    order.isPaid
+                                                className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${order.isPaid
                                                         ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
                                                         : 'bg-amber-100 text-amber-800 border-amber-300'
-                                                }`}
+                                                    }`}
                                             >
                                                 {order.isPaid ? 'Paid' : 'Pending'}
                                             </span>

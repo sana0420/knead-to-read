@@ -9,7 +9,7 @@ const getAuthToken = () =>
 const verifyOnBackend = async (endpoint, body) => {
     const token = getAuthToken();
     const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${endpoint}`,
+        `${import.meta.env.BACKEND_URL}/api/checkout/${endpoint}`,
         {
             method: 'POST',
             headers: {

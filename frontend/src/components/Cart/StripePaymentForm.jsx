@@ -21,7 +21,7 @@ const PaymentForm = ({ onSuccess }) => {
     const verifyPayment = async (paymentIntentId) => {
         const token = getAuthToken();
         const response = await fetch(
-            `${import.meta.env.VITE_BACKEND_URL}/api/checkout/verify-payment`,
+            `${import.meta.env.BACKEND_URL}/api/checkout/verify-payment`,
             {
                 method: 'POST',
                 headers: {

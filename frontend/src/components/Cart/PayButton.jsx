@@ -24,7 +24,7 @@ const PayButton = ({ checkoutData, disabled = false }) => {
 
         try {
             const response = await fetch(
-                `${import.meta.env.VITE_BACKEND_URL}/api/checkout/create-checkout-session`,
+                `${import.meta.env.BACKEND_URL}/api/checkout/create-checkout-session`,
                 {
                     method: "POST",
                     headers: {
